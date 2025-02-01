@@ -23,10 +23,14 @@ export class OrganizationsService {
   }
 
   update(id: string, updateOrganizationDto: UpdateOrganizationDto) {
-    return this.organizationModel.findByIdAndUpdate(id, updateOrganizationDto)
-  }
+    return this.organizationModel.findByIdAndUpdate(id, updateOrganizationDto, { new: true });
+}
 
   remove(id: string) {
     return this.organizationModel.findByIdAndDelete(id);
+  }
+
+  async findByUserEmail(email: string) {
+    return this.organizationModel.find({ 'users.email': email });
   }
 }

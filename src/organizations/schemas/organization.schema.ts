@@ -32,11 +32,11 @@ export class Organization extends Document {
     })
     users: Types.Array<User>;
 
-    @Prop({
+    /* @Prop({
         type: FormaSchema,
         required: true,
     })
-    forma: Forma;
+    forma: Forma; */
 }
 
 export const OrganizationSchema = SchemaFactory.createForClass(Organization);

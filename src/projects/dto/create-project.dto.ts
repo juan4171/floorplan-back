@@ -1,4 +1,4 @@
-import { IsString, IsBoolean, IsOptional, IsNotEmpty, IsObject, IsMongoId, IsDefined } from 'class-validator';
+import { IsString, IsNotEmpty, IsObject, IsMongoId, IsDefined } from 'class-validator';
 
 export class CreateProjectDto {
     @IsMongoId()
@@ -12,5 +12,5 @@ export class CreateProjectDto {
 
     @IsObject()
     @IsDefined()
-    campos_dinamicos?: Record<string, any>;  // Definición flexible
+    campos_dinamicos?: Record<string, any>; 
 }

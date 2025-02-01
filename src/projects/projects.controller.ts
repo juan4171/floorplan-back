@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Put, Body, Param, NotFoundException, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Put, Body, Param, NotFoundException, Patch, Query } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -19,6 +19,11 @@ export class ProjectsController {
         return this.projectsService.findAll();
     }
 
+    @Get('organization/:organizationId')
+    async findByOrganizationId(@Param('organizationId') organizationId: string) {
+        return this.projectsService.findByOrganizationId(organizationId);
+    }
+
     @Get(':id')
     async findOne(@Param('id') id: string) {
         return this.projectsService.findOne(id);
@@ -33,7 +38,7 @@ export class ProjectsController {
     async delete(@Param('id') id: string) {
         return this.projectsService.delete(id);
     }
-    
+
     @Get('organization/:id')
     async getOrganizationProjects(@Param('id') id: string) {
         return this.projectsService.getOrganizationProjects(id);

@@ -7,13 +7,13 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Injectable()
 export class ProjectsService {
-    constructor(@InjectModel(Project.name) private projectModel: Model<Project>) {}
+    constructor(@InjectModel(Project.name) private projectModel: Model<Project>) { }
 
     async create(createProjectDto: CreateProjectDto) {
         const newProject = new this.projectModel({
             ...createProjectDto,
             organization: new Types.ObjectId(createProjectDto.organization),
-    });
+        });
         return newProject.save();
     }
 
@@ -26,7 +26,7 @@ export class ProjectsService {
     }
 
     async update(id: string, updateProjectDto: UpdateProjectDto) {
-        return this.projectModel.findByIdAndUpdate(id, updateProjectDto); 
+        return this.projectModel.findByIdAndUpdate(id, updateProjectDto, { new: true });
     }
 
     async delete(id: string) {
@@ -38,5 +38,10 @@ export class ProjectsService {
             throw new NotFoundException('Invalid organization ID');
         }
         return this.projectModel.find({ organization: new Types.ObjectId(id) });
+    }
+
+    async findByOrganizationId(organizationId: string): Promise<Project[]> {
+        const objectId = new Types.ObjectId(organizationId);
+        return this.projectModel.find({ organization: objectId }).exec();
     }
 }

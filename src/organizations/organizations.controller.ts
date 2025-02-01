@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { OrganizationsService } from './organizations.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
-import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Organizations')
 @Controller('organizations')
@@ -17,6 +17,11 @@ export class OrganizationsController {
   @Get()
   findAll() {
     return this.organizationsService.findAll();
+  }
+
+  @Get('user-email')
+  findByUserEmail(@Query('email') email: string) {
+    return this.organizationsService.findByUserEmail(email);
   }
 
   @Get(':id')

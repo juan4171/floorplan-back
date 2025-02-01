@@ -1,6 +1,4 @@
-import { IsString, IsBoolean, IsOptional, IsNotEmpty, IsObject, IsMongoId, IsDefined } from 'class-validator';
-import { CreateProjectDto } from './create-project.dto';
-import { PartialType } from '@nestjs/swagger';
+import { IsString, IsOptional, IsObject} from 'class-validator';
 
 export class UpdateProjectDto {
 

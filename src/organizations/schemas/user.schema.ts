@@ -14,6 +14,12 @@ export class User extends Document {
         trim: true
     })
     email: string;
+
+    @Prop({
+        required: true,
+        default: false
+    })
+    isAdmin: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

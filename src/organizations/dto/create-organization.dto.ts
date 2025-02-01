@@ -22,8 +22,8 @@ export class CreateOrganizationDto {
     @Type(() => CreateUserDto)
     users: CreateUserDto[];
 
-    @IsDefined()
+    /* @IsDefined()
     @ValidateNested()
     @Type(() => CreateFormaDto)
-    forma: CreateFormaDto;
+    forma: CreateFormaDto; */
 }

@@ -1,0 +1,34 @@
+version: '3'
+services:
+  nestjs-app-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestjs-app-1
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    cpus: 0.10
+
+  nestjs-app-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestjs-app-2
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+    cpus: 0.10
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - nestjs-app-1
+      - nestjs-app-2

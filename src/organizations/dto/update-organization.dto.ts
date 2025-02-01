@@ -25,8 +25,8 @@ export class UpdateOrganizationDto extends PartialType(CreateOrganizationDto) {
     @IsOptional()
     users?: CreateUserDto[];
 
-    @ValidateNested()
+    /* @ValidateNested()
     @Type(() => CreateFormaDto)
     @IsOptional()
-    forma?: CreateFormaDto;
+    forma?: CreateFormaDto; */
 }
